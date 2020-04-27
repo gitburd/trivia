@@ -35,35 +35,61 @@ const GameState = props => {
         
     const [state, dispatch] = useReducer(gameReducer, initialState);
 
-    const getTurn = (player, question) => {
+    const getTurn = async (player, i) => {
       console.log('get turn')
-      let idx = Math.floor(Math.random() * 6)
+      
       let code = 'one'
-      switch(idx){
+      let category = 9
+
+      switch(i){
         case Number(0) :
-          code = 'one'
+          code = 'one';
+          category = 9;
           break;
         case Number(1) :
-          code = 'two'
+          code = 'two';
+          category = 21;
           break;
         case Number(2) :
-          code = 'three'
+          code = 'three';
+          category = 17;
           break;
         case Number(3) :
-          code = 'four'
+          code = 'four';
+          category = 23;
           break;
         case Number(4) :
-          code = 'five'
+          code = 'five';
+          category = 11;
           break;
         case Number(5) :
-          code = 'six'  
+          code = 'six';  
+          category = 25;
           break;
       }
 
       let color ={
-        idx,
+        idx:i,
         code
       }
+      
+      const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
+      // const targetURL='https://opentdb.com/api.php?amount=20'
+      const targetURL='https://opentdb.com/api.php?amount=1&category='
+
+      let res
+
+      try {
+        res = await axios.get(`${proxyURL}${targetURL}${category}`);
+        console.log('res',res)
+      } catch (err) {
+        console.log(err)
+      }
+
+      let question = res.data.results[0];
+      console.log("qustion", question)
+
+   
 
       let layout = Math.floor(Math.random() * 4)
       

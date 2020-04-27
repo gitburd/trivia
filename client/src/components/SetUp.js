@@ -7,10 +7,10 @@ const SetUp = () => {
     const { turn, getStorage, initGame, init, numberOfPlayers, questions, getQuestions } = gameContext
     const [playersCount, setPlayersCount] = useState(4)
 
-    useEffect(() => {
-        // eslint-disable-next-line
-        getQuestions()
-    }, []);
+    // useEffect(() => {
+    //     // eslint-disable-next-line
+    //     getQuestions()
+    // }, []);
 
 
     const onInitClick = (e) => { 

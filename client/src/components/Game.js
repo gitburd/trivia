@@ -30,17 +30,17 @@ const Game = () => {
         )
     }
 
-    if(!questions || !questions.length){
-        console.log('getQ from game')
-        getQuestions()
+    // if(!questions || !questions.length){
+    //     console.log('getQ from game')
+    //     getQuestions()
 
-        return (
-            <h1>Loading...</h1>
-        )
-    }
+    //     return (
+    //         <h1>Loading...</h1>
+    //     )
+    // }
 
     if(!turn){
-        getTurn(1, questions[0])
+        getTurn(1, 0)
         return (
             <h1>Loading...</h1>
         )

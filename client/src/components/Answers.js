@@ -26,19 +26,17 @@ const Answers = () => {
         
         correctAnswer(updatePlayers);
         
-        getTurn(player, questions[0])
+        let i = Math.floor(Math.random() * 6)
+        console.log("answers", player, i)
+        getTurn(player, i)
         
-        if(questions.length === 1){
-            getQuestions()
-        }
+        // if(questions.length === 1){
+        //     getQuestions()
+        // }
     }      
 
     const onWrongClick = (e) => {
         e.preventDefault();
-        
-        alert('wrong!');
-window.location.reload();
-        
 
         let newPlayer = player
 
@@ -48,13 +46,16 @@ window.location.reload();
             newPlayer = newPlayer + 1
         }
 
-        getTurn(newPlayer, questions[0])
+        let idx = Math.floor(Math.random() * 6)
+
+        console.log("answers", newPlayer, idx)
+        getTurn(newPlayer, idx)
         
-        if(questions.length === 1){
-            getQuestions()
-        }
+        // if(questions.length === 1){
+        //     getQuestions()
+        // }
         
-        
+        alert('wrong!');
     }
 
     const onTrueClick = (e) => {
