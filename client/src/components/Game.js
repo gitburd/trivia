@@ -1,23 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react'
 import Turn from './Turn'
-import Players from './Players'
-import Question from './Question'
 import GameContext from '../context/game/gameContext'
-import Answers from './Answers'
 import Setup from './SetUp'
-import Card from 'react-bootstrap/Card'
-import {Col, Row, Container} from 'react-bootstrap'
 import Nav from './Nav'
-import GameState from '../context/game/GameState'
-
+import  q from '../img/q.jpg'
 
 const Game = () => {
     const gameContext = useContext(GameContext)
-    const { turn, getStorage, initGame, init, getTurn, numberOfPlayers, questions, getQuestions } = gameContext
-    const [playersCount, setPlayersCount] = useState(5)
-
-   
-
+    const { turn, getStorage, init, getTurn } = gameContext
+    
     useEffect(() => {
         // eslint-disable-next-line
         getStorage()
@@ -26,18 +17,15 @@ const Game = () => {
   
     if(!init){
         return(
-            <Setup/>
+            <div>
+                <img  className='bg' src={q} />
+                <Nav/>
+                <div className='container'>
+                    <Setup/>
+                </div>
+            </div>
         )
     }
-
-    // if(!questions || !questions.length){
-    //     console.log('getQ from game')
-    //     getQuestions()
-
-    //     return (
-    //         <h1>Loading...</h1>
-    //     )
-    // }
 
     if(!turn){
         getTurn(1, 0)
@@ -48,6 +36,7 @@ const Game = () => {
 
     return (
         <div >
+            <img  className='bg' src={q} />
             <Nav/>
             <div className='container'>
                 <Turn/>   

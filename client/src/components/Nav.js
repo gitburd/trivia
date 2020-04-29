@@ -4,7 +4,7 @@ import GameContext from '../context/game/gameContext'
 
 const Nav = () => {
     const gameContext = useContext(GameContext)
-    const {  gameOver } = gameContext
+    const {  gameOver, init} = gameContext
     
     const onClick = (e) => {
         e.preventDefault()
@@ -23,11 +23,15 @@ const Nav = () => {
                     <span className="color-six">A</span>
                 </b>
             </Navbar.Brand>
-            <Navbar.Collapse className="justify-content-end">
-                <Navbar.Text onClick={e=>{onClick(e)}}>
-                    <a href="#!">New Game</a>
-                </Navbar.Text>
-            </Navbar.Collapse>
+            
+            {init && (
+                <Navbar.Collapse className="justify-content-end">
+                    <Navbar.Text onClick={e=>{onClick(e)}}>
+                        <a href="#!">New Game</a>
+                    </Navbar.Text>
+                </Navbar.Collapse>
+            )}
+            
         </Navbar>
     )
 }

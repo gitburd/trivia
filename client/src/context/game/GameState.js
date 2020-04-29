@@ -18,12 +18,31 @@ const GameState = props => {
         colors:[ {code:'one', idx:0}, {code:'two', idx:2}, {code:'three', idx:3}, {code:'four', idx:3}, {code:'five', idx:4}, {code:'six', idx:5},],
 
         // catigories:[{lable:'General Knowledge', id:9}, {lable:'Art', id:25}, {lable:'Books', id:10},{lable:'Film', id:11}, {lable:'Music', id:12},{lable:'Science & Nature', id:17}],
-        players:[
-          // {id:1, score:[[false,'one'],[false,'two'], [true,'three'], [false, 'four'],[true, 'five'], [false, 'six']], correct:2}, 
-          // {id:2, score:[[false,'one'],[false,'two'], [true,'three'], [false, 'four'],[true, 'five'], [false, 'six']], correct:2}, 
-          // {id:3, score:[[false,'one'],[false,'two'], [true,'three'], [false, 'four'],[true, 'five'], [false, 'six']], correct:2}, 
-          // {id:4, score:[[false,'one'],[false,'two'], [true,'three'], [false, 'four'],[true, 'five'], [false, 'six']], correct:2}
-        ],
+        // geography 22, computers 18, mythology 20, animals 27, celebrities 26
+        // sports 21, politics 24, hiatory 23,  tv 14, video games 15, board games 16
+        // math 19, 
+
+        catigories:{
+          'General Knowledge':9,
+          'Art':25,
+          'Books':10,
+          'Film':11,
+          'Geography':22, 
+          'Computers':18,
+          'Mythology':20,
+          'Animals':27,
+          'Celebrities':26,
+          'Sports':21,
+          'Politics':24,
+          'History':23,
+          'TV':14,
+          'Video Games': 15,
+          'Board Games':16,
+          'Music':12,
+          'Nature': 17
+        },
+        
+        players:[],
         numberOfPlayers:4,
         turn:null,
         questions:[],
@@ -39,40 +58,41 @@ const GameState = props => {
       console.log('get turn')
       
       let code = 'one'
-      let category = 9
 
       switch(i){
         case Number(0) :
           code = 'one';
-          category = 9;
+          // category = 9;
           break;
         case Number(1) :
           code = 'two';
-          category = 21;
+          // category = 21;
           break;
         case Number(2) :
           code = 'three';
-          category = 17;
+          // category = 17;
           break;
         case Number(3) :
           code = 'four';
-          category = 23;
+          // category = 23;
           break;
         case Number(4) :
           code = 'five';
-          category = 11;
+          // category = 11;
           break;
         case Number(5) :
           code = 'six';  
-          category = 25;
+          // category = 25;
           break;
       }
+
+      let category = state.topics[i]
 
       let color ={
         idx:i,
         code
       }
-      
+
       const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
       // const targetURL='https://opentdb.com/api.php?amount=20'
       const targetURL='https://opentdb.com/api.php?amount=1&category='
@@ -81,7 +101,6 @@ const GameState = props => {
 
       try {
         res = await axios.get(`${proxyURL}${targetURL}${category}`);
-        console.log('res',res)
       } catch (err) {
         console.log(err)
       }
@@ -89,22 +108,45 @@ const GameState = props => {
       let question = res.data.results[0];
       console.log("qustion", question)
 
-   
+      // let layout = Math.floor(Math.random() * 4)
 
-      let layout = Math.floor(Math.random() * 4)
-      
+      let layout = 2
       dispatch({
         type: GET_TURN,
         payload:{ player, color, layout, question }
       })
     }
 
-    const initGame = async  (numberOfPlayers) => {
-      const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
-      const targetURL='https://opentdb.com/api.php?amount=20'
-      // const targetURL='https://opentdb.com/api.php?amount=20&category='
+    const initGame = async  (numberOfPlayers, topics) => {
+      console.log(topics)
 
-        const res = await axios.get(`${proxyURL}${targetURL}`);
+      const  topicsListFull = {
+        'General Knowledge':9,
+        'Art':25,
+        'Books':10,
+        'Film':11,
+        'Geography':22, 
+        'Computers':18,
+        'Mythology':20,
+        'Animals':27,
+        'Celebrities':26,
+        'Sports':21,
+        'Politics':24,
+        'History':23,
+        'TV':14,
+        'Video Games': 15,
+        'Board Games':16,
+        'Music':12,
+        'Nature': 17,
+        'Math':19
+      }
+      
+      let stateTopics = []
+      topics.forEach(topic => {
+        stateTopics.push(topicsListFull[topic])
+      });
+      
+      console.log('state topics ', stateTopics)
         let players =[]
         for(let i=1; i<=numberOfPlayers; i++){
           players.push(
@@ -120,9 +162,10 @@ const GameState = props => {
         type: INIT_GAME,
         payload: 
         {
-          questions: res.data.results,
+          // questions: res.data.results,
           numberOfPlayers,
-          players
+          players,
+          stateTopics
         }
       })
     }

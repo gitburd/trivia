@@ -14,6 +14,21 @@
   /* #4B9FE1#fa0df2; */
 }
 
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 .sqr{
   font-size: 20px;
   padding: 3px;
@@ -148,11 +163,30 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.wrong-reveal{
+  text-decoration: line-through;
+  opacity: .7;
+}
+
+.correct-reveal{
+border:5px solid green;
+}
+
 .container{
   width:75%;
   margin:40px auto;
 }
 
+.correctModal{
+  background-color: hsla(111, 100%, 27%, 0.5);
+}
+.winnerModal{
+  background-color: hsla(293, 100%, 28%, 0.5);
+}
+
+.wrongModal{
+  background-color: hsla(360, 100%, 50%, 0.5)
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

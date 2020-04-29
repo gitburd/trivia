@@ -14,17 +14,18 @@ import {
         case INIT_GAME:
             return{
                 ...state,
-                questions: action.payload.questions,
+                // questions: action.payload.questions,
                 numberOfPlayers: action.payload.numberOfPlayers,
                 players:action.payload.players,
-                init:true
+                init:true,
+                topics:action.payload.stateTopics
             }
         case GET_TURN:
             return{
                 ...state,
                 turn:action.payload,    
-                loading:false,
-                questions:state.questions.slice(1,state.questions.length)
+                loading:false
+                // questions:state.questions.slice(1,state.questions.length)
             }    
         case  CORRECT_ANSWER:
             return{

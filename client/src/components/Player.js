@@ -5,9 +5,7 @@ import Answers from './Answers'
 
 const Player = ( { player, turn } ) => {
     return (
-        // <div className='bounceInUp '>
-        // <div className='fadeIn'>
-        <div className="bounce">
+        <div>
             { player &&(
                 <Card body >
                 <div className={`p-10`} key={player.id}>

@@ -1,17 +1,28 @@
-import React, { useContext} from 'react'
+import React, { useContext, useState, useEffect} from 'react'
 import GameContext from '../context/game/gameContext'
 import Button from 'react-bootstrap/Button'
+import CorrectModal from './CorrectModal'
+import WrongModal from './WrongModal'
+import WinnerModal from './WinnerModal'
+import Layout0 from './layouts/Layout0'
+import Layout1 from './layouts/Layout1'
+import Layout2 from './layouts/Layout2'
+import Layout3 from './layouts/Layout3'
+
 var he = require('he');
 
 const Answers = () => {
     const gameContext = useContext(GameContext)
-    const {correctAnswer, turn, getTurn, players, numberOfPlayers, questions, getQuestions } = gameContext
+    const {correctAnswer, turn, getTurn, players, numberOfPlayers } = gameContext
     const { question, layout, player, color } = turn
+
+    const [showCorrect, setShowCorrect] = useState(false);
+    const [showWrong, setShowWrong] = useState(false);
+    const [showWinner, setShowWinner] = useState(false);
 
     const onCorrectClick = (e) => {
         e.preventDefault();
-        alert('correct!')
-
+        
         let updatePlayers = players
 
         // update correct score for the turn player only if the turn color score is false
@@ -20,19 +31,26 @@ const Answers = () => {
             updatePlayers[player-1].score[color.idx][0] = true
         }
 
-        if (updatePlayers[player-1].correct === 6){
-            alert('GAME OVER!')
-        }
-        
-        correctAnswer(updatePlayers);
-        
         let i = Math.floor(Math.random() * 6)
-        console.log("answers", player, i)
-        getTurn(player, i)
-        
-        // if(questions.length === 1){
-        //     getQuestions()
-        // }
+
+        if (updatePlayers[player-1].correct === 6){
+            setShowWinner(true)
+
+            const timer = setTimeout(() => {
+                getTurn(player+1, i)
+                setShowWinner(false)
+              }, 2500);
+              return () => clearTimeout(timer);
+        } else{
+            setShowCorrect(true)
+            
+            const timer = setTimeout(() => {
+                getTurn(player, i)
+                setShowCorrect(false)
+                correctAnswer(updatePlayers);
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
     }      
 
     const onWrongClick = (e) => {
@@ -48,14 +66,16 @@ const Answers = () => {
 
         let idx = Math.floor(Math.random() * 6)
 
-        console.log("answers", newPlayer, idx)
-        getTurn(newPlayer, idx)
+        setShowWrong(true)
+
+        const timer = setTimeout(() => {
+            console.log('This will run after 2.5 seconds!')
+            getTurn(newPlayer, idx)
+            setShowWrong(false)
+            
+          }, 2500);
+          return () => clearTimeout(timer);
         
-        // if(questions.length === 1){
-        //     getQuestions()
-        // }
-        
-        alert('wrong!');
     }
 
     const onTrueClick = (e) => {
@@ -74,7 +94,29 @@ const Answers = () => {
         }
     } 
     
+
     if(question){
+        if(showCorrect){
+            return(
+                <CorrectModal
+                    correctAnswer={he.decode(question.correct_answer)} />
+            )
+        }  
+
+        if(showWrong){
+            return(
+                <WrongModal
+                    correctAnswer={he.decode(question.correct_answer)} />
+            )
+        }
+
+        if(showWinner){
+            return(
+                <WinnerModal
+                    player={player} />
+            )
+        }  
+
         if(question.type === 'boolean'){
             return(
                 <div>
@@ -102,101 +144,40 @@ const Answers = () => {
     
         if( layout === 1 )  {
             return (
-                <div>
-                    <div>
-                        <Button className='answer' onClick= {e => onCorrectClick(e)} variant="outline-dark"> {he.decode(question.correct_answer)} </Button>
-                    </div>
-
-                    <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[0])} </Button>
-                    </div>
-                    
-                    <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[1])} </Button>
-                    </div>
-                   
-                   <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[2])} </Button>   
-                   </div>
-
-                </div>
+                <Layout1
+                    onCorrectClick={onCorrectClick}
+                    onWrongClick={onWrongClick}
+                />
             )    
         }
     
         if( layout === 2 )  {
             return (
-                <div>
-                   <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[2])} </Button>   
-                   </div>
-                   <div>
-                        <Button className='answer' onClick= {e => onCorrectClick(e)} variant="outline-dark"> {he.decode(question.correct_answer)} </Button>
-                    </div>
-
-                    <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[0])} </Button>
-                    </div>
-                    
-                    <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[1])} </Button>
-                    </div>
-                </div>
+                <Layout2 
+                    onCorrectClick={onCorrectClick}
+                    onWrongClick={onWrongClick}
+                />
             )    
         }
     
         if( layout === 3 )  {
             return (
-                <div>
-                    <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[1])} </Button>
-                    </div>
-                   
-                   <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[2])} </Button>   
-                   </div>
-                    <div>
-                        <Button className='answer' onClick= {e => onCorrectClick(e)} variant="outline-dark"> {he.decode(question.correct_answer)} </Button>
-                    </div>
-
-                    <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[0])} </Button>
-                    </div>
-
-                </div>
+                <Layout3 
+                    onCorrectClick={onCorrectClick}
+                    onWrongClick={onWrongClick}
+                />
             )    
         }
     
         if( layout === 0 )  {
             return (
-                <div>
-
-                    <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[0])} </Button>
-                    </div>
-
-                    <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[2])} </Button>   
-                    </div>  
-
-                    <div>
-                        <Button className='answer' onClick= {e => onWrongClick(e)} variant="outline-dark"> {he.decode(question.incorrect_answers[1])} </Button>
-                    </div>
-
-                   <div>
-                        <Button className='answer' onClick= {e => onCorrectClick(e)} variant="outline-dark"> {he.decode(question.correct_answer)} </Button>
-                    </div>
-                    
-                </div>
+                <Layout0 
+                    onCorrectClick={onCorrectClick}
+                    onWrongClick={onWrongClick}
+                />            
             )    
         }
-
     }
-
-    return (
-        <div>
-           
-        </div>
-    )
 }
 
 export default Answers
