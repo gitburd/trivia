@@ -15,10 +15,20 @@ const Answers = () => {
     const gameContext = useContext(GameContext)
     const {correctAnswer, turn, getTurn, players, numberOfPlayers } = gameContext
     const { question, layout, player, color } = turn
+    
 
     const [showCorrect, setShowCorrect] = useState(false);
     const [showWrong, setShowWrong] = useState(false);
     const [showWinner, setShowWinner] = useState(false);
+    const [rolling, setRolling] = useState(false)
+
+    useEffect(() => {
+        setRolling(true)
+        setTimeout(() => {
+            setRolling(false);
+        }, 1000);
+       // eslint-disable-next-line
+    }, [question]);
 
     const onCorrectClick = (e) => {
         e.preventDefault();
@@ -31,12 +41,13 @@ const Answers = () => {
             updatePlayers[player-1].score[color.idx][0] = true
         }
 
-        let i = Math.floor(Math.random() * 6)
+        const i = Math.floor(Math.random() * 6)
 
         if (updatePlayers[player-1].correct === 6){
             setShowWinner(true)
 
             const timer = setTimeout(() => {
+                console.log("correct getturn")
                 getTurn(player+1, i)
                 setShowWinner(false)
               }, 2500);
@@ -45,6 +56,7 @@ const Answers = () => {
             setShowCorrect(true)
             
             const timer = setTimeout(() => {
+                console.log("correct getturn")
                 getTurn(player, i)
                 setShowCorrect(false)
                 correctAnswer(updatePlayers);
@@ -63,19 +75,18 @@ const Answers = () => {
         } else {
             newPlayer = newPlayer + 1
         }
-
-        let idx = Math.floor(Math.random() * 6)
+    
+        const idx =  Math.floor(Math.random() * 6)
 
         setShowWrong(true)
 
         const timer = setTimeout(() => {
-            console.log('This will run after 2.5 seconds!')
+            console.log("wrong getturn")
             getTurn(newPlayer, idx)
             setShowWrong(false)
             
           }, 2500);
           return () => clearTimeout(timer);
-        
     }
 
     const onTrueClick = (e) => {
@@ -125,6 +136,7 @@ const Answers = () => {
                             className='answer' 
                             onClick= {e => onTrueClick(e)} 
                             variant="outline-dark"
+                            disabled={rolling}
                         > 
                             True 
                         </Button>
@@ -134,6 +146,7 @@ const Answers = () => {
                             className='answer' 
                             onClick= {e => onFalseClick(e)} 
                             variant="outline-dark"
+                            disabled={rolling}
                         > 
                             False 
                         </Button>
@@ -147,6 +160,7 @@ const Answers = () => {
                 <Layout1
                     onCorrectClick={onCorrectClick}
                     onWrongClick={onWrongClick}
+                    disabled={rolling}
                 />
             )    
         }
@@ -156,6 +170,7 @@ const Answers = () => {
                 <Layout2 
                     onCorrectClick={onCorrectClick}
                     onWrongClick={onWrongClick}
+                    disabled={rolling}
                 />
             )    
         }
@@ -165,6 +180,7 @@ const Answers = () => {
                 <Layout3 
                     onCorrectClick={onCorrectClick}
                     onWrongClick={onWrongClick}
+                    disabled={rolling}
                 />
             )    
         }
@@ -174,6 +190,7 @@ const Answers = () => {
                 <Layout0 
                     onCorrectClick={onCorrectClick}
                     onWrongClick={onWrongClick}
+                    disabled={rolling}
                 />            
             )    
         }

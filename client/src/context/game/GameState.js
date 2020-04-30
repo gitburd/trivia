@@ -4,13 +4,14 @@ import GameContext from './gameContext';
 import gameReducer from './gameReducer';
 import {
   GET_TURN,
-  GET_QUESTIONS,
-  REMOVE_QUESTION,
-  QUESTIONS_ERROR,
+  // GET_QUESTIONS,
+  // REMOVE_QUESTION,
+  // QUESTIONS_ERROR,
   CORRECT_ANSWER,
   GAME_OVER,
   INIT_GAME,
-  GET_STORAGE
+  GET_STORAGE,
+  SET_DICE
 } from '../types'
 
 const GameState = props => {
@@ -62,27 +63,21 @@ const GameState = props => {
       switch(i){
         case Number(0) :
           code = 'one';
-          // category = 9;
           break;
         case Number(1) :
           code = 'two';
-          // category = 21;
           break;
         case Number(2) :
           code = 'three';
-          // category = 17;
           break;
         case Number(3) :
           code = 'four';
-          // category = 23;
           break;
         case Number(4) :
           code = 'five';
-          // category = 11;
           break;
         case Number(5) :
           code = 'six';  
-          // category = 25;
           break;
       }
 
@@ -90,11 +85,10 @@ const GameState = props => {
 
       let color ={
         idx:i,
-        code
+        code        
       }
 
       const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
-      // const targetURL='https://opentdb.com/api.php?amount=20'
       const targetURL='https://opentdb.com/api.php?amount=1&category='
 
       let res
@@ -106,14 +100,17 @@ const GameState = props => {
       }
 
       let question = res.data.results[0];
-      console.log("qustion", question)
 
-      // let layout = Math.floor(Math.random() * 4)
+      let layout = Math.floor(Math.random() * 4)
 
-      let layout = 2
       dispatch({
         type: GET_TURN,
-        payload:{ player, color, layout, question }
+        payload:{ 
+          player, 
+          color, 
+          layout, 
+          question
+        }
       })
     }
 
@@ -162,7 +159,6 @@ const GameState = props => {
         type: INIT_GAME,
         payload: 
         {
-          // questions: res.data.results,
           numberOfPlayers,
           players,
           stateTopics
@@ -184,45 +180,49 @@ const GameState = props => {
       });
     }
 
-  
-    const getQuestions = async () => {
-      console.log('getQuestions')
-      const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
-      const targetURL='https://opentdb.com/api.php?amount=20'
-      // const targetURL='https://opentdb.com/api.php?amount=20&category='
-
-      try {
-        const res = await axios.get(`${proxyURL}${targetURL}`);
-        console.log('res',res)
-        dispatch({
-          type: GET_QUESTIONS,
-          payload: res.data.results
-        });
-      } catch (err) {
-        dispatch({
-          type: QUESTIONS_ERROR,
-          payload: err
-        });
-      }
-    };
-
-    const removeQuestion = (questions) => {
+    const setDice = (die1, die2) => {
       dispatch({
-        type: REMOVE_QUESTION,
-        payload:questions
+        type: SET_DICE,
+        payload:{die1, die2}
       });
     }
+  
+    // const getQuestions = async () => {
+    //   console.log('getQuestions')
+    //   const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
+    //   const targetURL='https://opentdb.com/api.php?amount=20'
+    //   // const targetURL='https://opentdb.com/api.php?amount=20&category='
+
+    //   try {
+    //     const res = await axios.get(`${proxyURL}${targetURL}`);
+    //     console.log('res',res)
+    //     dispatch({
+    //       type: GET_QUESTIONS,
+    //       payload: res.data.results
+    //     });
+    //   } catch (err) {
+    //     dispatch({
+    //       type: QUESTIONS_ERROR,
+    //       payload: err
+    //     });
+    //   }
+    // };
+
+
+    // const removeQuestion = (questions) => {
+    //   dispatch({
+    //     type: REMOVE_QUESTION,
+    //     payload:questions
+    //   });
+    // }
 
     // useEffect(() => {
     //   getStorage()
     // }, [])
 
     const getStorage = () => {
-      console.log('get store')
       const storage = localStorage.getItem('state')
-      console.log(storage)
       const storagePayload = storage ? JSON.parse(storage) : initialState
-      console.log(storagePayload)
       dispatch({
         type: GET_STORAGE,
         payload: storagePayload
@@ -246,9 +246,10 @@ const GameState = props => {
             // useEffect,
             initGame,
             getTurn, 
-            getQuestions,
-            removeQuestion,
+            // getQuestions,
+            // removeQuestion,
             correctAnswer,
+            setDice,
             gameOver,
             getStorage
           }}

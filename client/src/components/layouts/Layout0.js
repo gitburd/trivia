@@ -3,9 +3,9 @@ import GameContext from '../../context/game/gameContext'
 import Button from 'react-bootstrap/Button'
 var he = require('he')
 
-const Layout0 = ({onCorrectClick, onWrongClick}) => {
+const Layout0 = ({onCorrectClick, onWrongClick, disabled}) => {
     const gameContext = useContext(GameContext)
-    const {correctAnswer, turn, getTurn, players, numberOfPlayers } = gameContext
+    const { turn } = gameContext
     const { question, layout, player, color } = turn
 
     return (
@@ -15,6 +15,7 @@ const Layout0 = ({onCorrectClick, onWrongClick}) => {
                     className='answer' 
                     onClick= {e => onWrongClick(e)} 
                     variant="outline-dark"
+                    disabled={disabled}
                 > 
                     {he.decode(question.incorrect_answers[0])} 
                 </Button>
@@ -25,6 +26,7 @@ const Layout0 = ({onCorrectClick, onWrongClick}) => {
                     className='answer' 
                     onClick= {e => onWrongClick(e)} 
                     variant="outline-dark"
+                    disabled={disabled}
                 > 
                     {he.decode(question.incorrect_answers[2])} 
                 </Button>   
@@ -35,6 +37,7 @@ const Layout0 = ({onCorrectClick, onWrongClick}) => {
                     className='answer' 
                     onClick= {e => onWrongClick(e)} 
                     variant="outline-dark"
+                    disabled={disabled}
                 > 
                     {he.decode(question.incorrect_answers[1])} 
                 </Button>
@@ -44,6 +47,7 @@ const Layout0 = ({onCorrectClick, onWrongClick}) => {
                     className='answer' 
                     onClick= {e => onCorrectClick(e)} 
                     variant="outline-dark"
+                    disabled={disabled}
                 > 
                     {he.decode(question.correct_answer)} 
                 </Button>

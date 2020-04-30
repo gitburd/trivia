@@ -8,4 +8,5 @@ export const QUESTIONS_ERROR = 'QUESTIONS_ERORR';
 export const GAME_OVER = 'GAME_OVER';
 export const INIT_GAME = 'INIT_GAME';
 export const GET_STORAGE = 'GET_STORAGE';
+export const SET_DICE = 'SET_DICE';
 

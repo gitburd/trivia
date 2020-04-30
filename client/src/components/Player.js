@@ -1,9 +1,19 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Card from 'react-bootstrap/Card'
 import Question from './Question'
 import Answers from './Answers'
+import Die from './Die'
 
 const Player = ( { player, turn } ) => {
+    const [rolling, setRolling] = useState(false)
+
+    useEffect(() => {
+        setRolling(true)
+        setTimeout(() => {
+            setRolling(false);
+        }, 2000);
+       // eslint-disable-next-line
+    }, []);
     return (
         <div>
             { player &&(
@@ -18,8 +28,9 @@ const Player = ( { player, turn } ) => {
                 {
                     player.id === turn.player && (
                         <div>
+                            <Die color={turn.color.code} />
                             <Question/>
-                            <Answers/>
+                            <Answers />
                         </div>
                     )
                 }

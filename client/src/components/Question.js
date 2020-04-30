@@ -1,5 +1,7 @@
 import React, { useContext, Fragment} from 'react'
 import GameContext from '../context/game/gameContext'
+import Die from './Die'
+
 var he = require('he');
 
 function Question(props) {
@@ -8,14 +10,14 @@ function Question(props) {
     const {color, question} = turn
 
     return (
-        <div>
+        <div className='center'>
             {
                 question && color && (
                     <Fragment>
-                    <h4 className={`color-${color.code} p-20`}>
-                        <b>{question["category"]}</b>
-                    </h4>
-                    <p className='p-20'> {he.decode(question.question)}</p>
+                        <h4 className={`color-${color.code} p-10`}>
+                            <b>{question["category"]}</b>
+                        </h4>
+                        <p className='p-10'> {he.decode(question.question)}</p>
                     </Fragment>
                 )
             }

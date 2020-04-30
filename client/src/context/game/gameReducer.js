@@ -5,6 +5,7 @@ import {
     CORRECT_ANSWER,
     INIT_GAME,
     GAME_OVER,
+    SET_DICE,
     QUESTIONS_ERROR,
     GET_STORAGE
   } from '../types'
@@ -33,13 +34,20 @@ import {
                 players:action.payload,
                 loading:false
             }
-        case REMOVE_QUESTION:    
-        case GET_QUESTIONS:
-        return{
+        // case REMOVE_QUESTION:    
+        // case GET_QUESTIONS:
+        // return{
+        //         ...state,
+        //         questions:action.payload,
+        //         loading:false
+        //     }
+        case SET_DICE:
+            return{
                 ...state,
-                questions:action.payload,
-                loading:false
+                die1:action.payload.die1,
+                die2:action.payload.die2
             }
+
         case GET_STORAGE:
             return{
                 ...action.payload
