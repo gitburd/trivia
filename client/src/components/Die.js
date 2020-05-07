@@ -13,7 +13,7 @@ import React, { useEffect, useState } from 'react'
 
     
     return (
-        <div className={`color-${color} p-20 die center ${rolling && 'rolling' }`}>
+        <div className={`color-${color} p-10 die center ${rolling && 'rolling' }`}>
             <i className={ `p-10 die fas fa-dice-${color}  `}></i> 
         </div>
     )

@@ -6,7 +6,7 @@ import {
     INIT_GAME,
     GAME_OVER,
     SET_DICE,
-    QUESTIONS_ERROR,
+    QUESTION_ERROR,
     GET_STORAGE
   } from '../types'
 
@@ -56,7 +56,11 @@ import {
         return{
             ...action.payload
         }        
-
+        case QUESTION_ERROR:
+            return{
+                ...state,
+                error: action.payload
+            }        
         default:
             return state
     }

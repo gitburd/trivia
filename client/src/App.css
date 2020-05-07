@@ -8,6 +8,7 @@
   --color-five: #5626C4;
   --color-six: #FB9039;
   --color-light:#FEFEFE;
+  --color-dark: #43464B;
   /* #849531; */
   /* #FACD3D; */
 
@@ -30,10 +31,19 @@ img.bg {
 }
 
 .sqr{
-  font-size: 20px;
-  padding: 3px;
+  font-size: 42px;
+  padding: 0 5px;
+}
+.player-title{
+  font-size: 32px;
+  padding:0 10px;
 }
 
+.player-title-active{
+  font-size: 32px;
+  padding:0 10px;
+  color:white;
+}
 .color-one{
   color:var(--color-one)
 }
@@ -143,6 +153,10 @@ img.bg {
   background-color: var(--color-six);
 }
 
+.back-dark{
+  background-color: var(--color-dark);
+}
+
 .back-white{
   background-color: white;
 }
@@ -220,6 +234,11 @@ border:5px solid green;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.center-text{
+  text-align: center;
+  width:100%;
 }
 
 .half-height{

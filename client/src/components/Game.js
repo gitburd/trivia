@@ -7,15 +7,20 @@ import  q from '../img/q.jpg'
 
 const Game = () => {
     const gameContext = useContext(GameContext)
-    const { turn, getStorage, init, getTurn } = gameContext
+    const { turn, getStorage, init, getTurn, error } = gameContext
     
     useEffect(() => {
         // eslint-disable-next-line
         getStorage()
     }, []);
 
-  
-    if(!init){
+    if(error){
+        return(
+            <div>
+                <h2>Currently unavailable. Please check back later.</h2> 
+            </div>
+        )
+    }else if(!init){
         return(
             <div>
                 <img  className='bg' src={q} />
@@ -25,11 +30,8 @@ const Game = () => {
                 </div>
             </div>
         )
-    }
-
-    if(!turn){
-       let i = Math.floor(Math.random() * 6) 
-
+    }else if(!turn){
+        let i = Math.floor(Math.random() * 6) 
         console.log('game getturn')
         getTurn(1, i)
         return (

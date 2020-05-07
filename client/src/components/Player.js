@@ -18,13 +18,12 @@ const Player = ( { player, turn } ) => {
         <div>
             { player &&(
                 <Card body >
-                <div className={`p-10`} key={player.id}>
-                    <h4>Player {player.id}</h4>      
+                <div className={`p-10 center-text`} key={player.id}>
+                    <p className={player.id ===turn.player ? `player-title-active back-dark` :`player-title` }>Player {player.id}</p>      
                     {player.score.map((s, idx)  => (
                         <span key={`${player.id}-${idx}`}>{s[0]?  <i className={`fas fa-square sqr color-${s[1]} `}></i> :  <i className={`far fa-square sqr color-${s[1]} `}></i> }</span>
                     ))}
                 </div>
-    
                 {
                     player.id === turn.player && (
                         <div>
@@ -34,7 +33,6 @@ const Player = ( { player, turn } ) => {
                         </div>
                     )
                 }
-            
                 </Card>
             )}
 
