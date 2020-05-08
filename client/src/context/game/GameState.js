@@ -39,7 +39,8 @@ const GameState = props => {
         numberOfPlayers:4,
         turn:null,
         questions:[],
-        init:false
+        init:false,
+        token:''
     };
 
             
@@ -77,12 +78,17 @@ const GameState = props => {
 
       const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
       const targetURL='https://opentdb.com/api.php?amount=1&category='
+      const token=`&token=${state.token}`
+
+      let url 
+      
+      state.token === '' ? url=`${proxyURL}${targetURL}${category}` : url=`${proxyURL}${targetURL}${category}${token}`
       try {
-        let res = await axios.get(`${proxyURL}${targetURL}${category}`)
+        let res = await axios.get(url)
           .then( res => {
             let question = res.data.results[0];
             let layout = Math.floor(Math.random() * 4)
-
+            console.log('token',token, res.data);
             dispatch({
               type: GET_TURN,
               payload:{ 
@@ -144,14 +150,36 @@ const GameState = props => {
           )
         }
 
-      dispatch({
-        type: INIT_GAME,
-        payload: {
-          numberOfPlayers,
-          players,
-          stateTopics
-        }
-      })
+        const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
+        const targetURL='https://opentdb.com/api_token.php?command=request'
+      try {
+        let res = await axios.get(`${proxyURL}${targetURL}`)
+          .then( res => {
+            console.log('token',res.data.token);
+            dispatch({
+              type: INIT_GAME,
+              payload: {
+                numberOfPlayers,
+                players,
+                stateTopics,
+                token:res.data.token
+              }
+            })
+          }
+        )
+      } catch (err) {
+        console.log(err)
+        dispatch({
+          type: INIT_GAME,
+          payload: {
+            numberOfPlayers,
+            players,
+            stateTopics,
+            token:''
+          }
+        })
+      }
+    
     }
 
     const correctAnswer = (p) => {

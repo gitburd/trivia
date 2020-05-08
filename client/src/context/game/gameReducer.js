@@ -19,7 +19,8 @@ import {
                 numberOfPlayers: action.payload.numberOfPlayers,
                 players:action.payload.players,
                 init:true,
-                topics:action.payload.stateTopics
+                topics:action.payload.stateTopics,
+                token:action.payload.token
             }
         case GET_TURN:
             return{
