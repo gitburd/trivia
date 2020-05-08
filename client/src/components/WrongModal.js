@@ -1,36 +1,59 @@
-import React, {useState, useEffect} from 'react'
-import Modal from 'react-bootstrap/Modal'
+import React, { Component } from "react";
+import M from "materialize-css";
+import "materialize-css/dist/css/materialize.min.css";
 var he = require('he');
 
-const CorrectModal = ({correctAnswer}) => {
-    
-    const [show, setShow] = useState(true);
+class Modal extends Component {
+  componentDidMount() {
+   
+    const options = {
+      onOpenStart: () => {
+        console.log("Open Start");
+      },
+      onOpenEnd: () => {
+        console.log("Open End");
+      },
+      onCloseStart: () => {
+        console.log("Close Start");
+      },
+      onCloseEnd: () => {
+        console.log("Close End");
+      },
+    //   inDuration: 250,
+    //   outDuration: 250,
+      opacity: 0.5,
+      dismissible: false,
+      startingTop: "4%",
+      endingTop: "10%"
+    };
+    M.Modal.init(this.Modal, options);
+    let instance = M.Modal.getInstance(this.Modal);
+    instance.open();
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const timer = setTimeout(() => {
+        console.log("wm timer")
+        instance.close();
+        instance.destroy()
+    }, 2500);
+    return () => clearTimeout(timer);
+  }
+
+  render() {
+    const {correctAnswer} = this.props
 
     return (
-        <>
-        <Modal 
-            className="wrongModal"
-            show={show} 
-            onHide={handleClose}
-            centered
-            size="lg"
+        <div
+          ref={Modal => {this.Modal = Modal}}
+          id="modal1"
+          className="modal wrongModal"
         >
-            
-            <Modal.Body className='p-30' style={{color:'hsla(360, 100%, 50%, 1)', textAlign:'center'}}>
-            <div>
-                <h2>Wrong</h2>
-
-                <h3>
-                    Answer: {he.decode(correctAnswer)}
-                </h3>
-                </div>
-            </Modal.Body>
-        </Modal>
-        </>
-    )
+            <div  className="white mo">
+                <h2>Wrong!</h2>
+                <p style={{fontSize:'24px'}}> Answer: {he.decode(correctAnswer)} </p>
+            </div>
+      </div>
+    );
+  }
 }
 
-export default CorrectModal
+export default Modal;

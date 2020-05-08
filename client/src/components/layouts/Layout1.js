@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect} from 'react'
 import GameContext from '../../context/game/gameContext'
-import Button from 'react-bootstrap/Button'
 var he = require('he')
 
 const Layout1 = ({onCorrectClick, onWrongClick, disabled}) => {
@@ -12,50 +11,43 @@ const Layout1 = ({onCorrectClick, onWrongClick, disabled}) => {
         <div>
         {/* <CorrectModal /> */}
         <div>
-            <Button 
-                className='answer' 
-                onClick= {e => onCorrectClick(e)} 
-                variant="outline-dark"
+        <button 
+                className="btn waves-effect waves-light answer" 
                 disabled={disabled}
-            > 
+                onClick= {e => onCorrectClick(e)}
+            >
                 {he.decode(question.correct_answer)} 
-            </Button>
+            </button>
         </div>
         <div>
-            <Button 
-                className='answer' 
-                onClick= {e => onWrongClick(e)} 
-                variant="outline-dark"
+        <button 
+                className="btn waves-effect waves-light answer" 
                 disabled={disabled}
-            > 
-                {he.decode(question.incorrect_answers[0])} 
-            </Button>
+                onClick= {e => onWrongClick(e)} 
+            >
+             {he.decode(question.incorrect_answers[0])} 
+            </button>
         </div>
 
         <div>
-            <Button 
-                className='answer' 
-                onClick= {e => onWrongClick(e)} 
-                variant="outline-dark"
+        <button 
+                className="btn waves-effect waves-light answer" 
                 disabled={disabled}
-            > 
-                {he.decode(question.incorrect_answers[2])} 
-            </Button>   
+                onClick= {e => onWrongClick(e)} 
+            >
+             {he.decode(question.incorrect_answers[1])} 
+            </button>
         </div>  
 
         <div>
-            <Button 
-                className='answer' 
-                onClick= {e => onWrongClick(e)} 
-                variant="outline-dark"
+        <button 
+                className="btn waves-effect waves-light answer" 
                 disabled={disabled}
-            > 
-                {he.decode(question.incorrect_answers[1])} 
-            </Button>
-        </div>
-
-     
-        
+                onClick= {e => onWrongClick(e)} 
+            >
+             {he.decode(question.incorrect_answers[2])} 
+            </button>
+        </div>   
     </div>
     )
 }

@@ -1,11 +1,6 @@
 import React, {useContext, useState} from 'react'
-import Button from 'react-bootstrap/Button'
 import GameContext from '../context/game/gameContext'
-import Form from 'react-bootstrap/Form'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Card from 'react-bootstrap/Card'
+
 
 const SetUp = () => {
     const gameContext = useContext(GameContext)
@@ -41,210 +36,164 @@ const SetUp = () => {
     }
 
     return (
-        <div >
-            <Card body  style={{width:'100%', textAlign:'center', marginTop:'100px'}}>
-            <div style={{fontSize:'36px'}}>
-                <h1>Number of Players</h1>
-                <span className="p-20" style={{textAlign:'center'}}>  
-                    <i 
-                        onClick= {e => onLeftClick(e)}
-                        className='fas fa-angle-left p-20 arrow'
-                    > </i>
-                    {playersCount}
-                    <i 
-                        className='fas fa-angle-right p-20 arrow'
-                        onClick= {e => onRightClick(e)}
-                    > </i> 
-                </span>
-                <h1>Topics</h1>
+        <div className="white col s12 center p-20">
+            <div className="row">
+                <div className="card-panel z-depth-0">
+                    <h1>Number of Players</h1>
+                    <span className="p-20" style={{textAlign:'center', fontSize:'36px'}}>  
+                        <i 
+                            onClick= {e => onLeftClick(e)}
+                            className='fas fa-angle-left p-20 arrow'
+                        > </i>
+                        {playersCount}
+                        <i 
+                            className='fas fa-angle-right p-20 arrow'
+                            onClick= {e => onRightClick(e)}
+                        > </i> 
+                    </span>
+                    <h1>Topics</h1>
+                    
+                    <div className="input-field col s6 m4">
+                        <select className="browser-default" onChange={e => setTopic6(e.target.value)}>
+                            <option value="General Knowledge" >General Knowledge</option>
+                            <option>Animals</option>
+                            <option>Art</option>
+                            <option>Board Games</option>
+                            <option>Books</option>
+                            <option>Celebrities</option>
+                            <option>Computers</option>
+                            <option>Film</option>
+                            <option>Geography</option>
+                            <option>History</option>                                
+                            <option>Math</option>
+                            <option>Music</option>
+                            <option>Mythology</option>
+                            <option>Nature</option>
+                            <option>Politics</option>
+                            <option>Sports</option>
+                            <option>TV</option>
+                            <option>Video Games</option>
+                        </select>
+                    </div>
+                    <div className="input-field col s6 m4">
+                        <select className="browser-default" onChange={e => setTopic5(e.target.value)}>
+                            <option value="General Knowledge" >General Knowledge</option>
+                            <option>Animals</option>
+                            <option>Art</option>
+                            <option>Board Games</option>
+                            <option>Books</option>
+                            <option>Celebrities</option>
+                            <option>Computers</option>
+                            <option>Film</option>
+                            <option>Geography</option>
+                            <option>History</option>                                
+                            <option>Math</option>
+                            <option>Music</option>
+                            <option>Mythology</option>
+                            <option>Nature</option>
+                            <option>Politics</option>
+                            <option>Sports</option>
+                            <option>TV</option>
+                            <option>Video Games</option>
+                        </select>
+                    </div>
+                    <div className="input-field col s6 m4">
+                        <select className="browser-default" onChange={e => setTopic4(e.target.value)}>
+                            <option value="General Knowledge" >General Knowledge</option>
+                            <option>Animals</option>
+                            <option>Art</option>
+                            <option>Board Games</option>
+                            <option>Books</option>
+                            <option>Celebrities</option>
+                            <option>Computers</option>
+                            <option>Film</option>
+                            <option>Geography</option>
+                            <option>History</option>                                
+                            <option>Math</option>
+                            <option>Music</option>
+                            <option>Mythology</option>
+                            <option>Nature</option>
+                            <option>Politics</option>
+                            <option>Sports</option>
+                            <option>TV</option>
+                            <option>Video Games</option>
+                        </select>
+                    </div>
+                    <div className="input-field col s6 m4">
+                        <select className="browser-default" onChange={e => setTopic3(e.target.value)}>
+                            <option value="General Knowledge" >General Knowledge</option>
+                            <option>Animals</option>
+                            <option>Art</option>
+                            <option>Board Games</option>
+                            <option>Books</option>
+                            <option>Celebrities</option>
+                            <option>Computers</option>
+                            <option>Film</option>
+                            <option>Geography</option>
+                            <option>History</option>                                
+                            <option>Math</option>
+                            <option>Music</option>
+                            <option>Mythology</option>
+                            <option>Nature</option>
+                            <option>Politics</option>
+                            <option>Sports</option>
+                            <option>TV</option>
+                            <option>Video Games</option>
+                        </select>
+                    </div>
+                    <div className="input-field col s6 m4">
+                        <select className="browser-default" onChange={e => setTopic2(e.target.value)}>
+                            <option value="General Knowledge" >General Knowledge</option>
+                            <option>Animals</option>
+                            <option>Art</option>
+                            <option>Board Games</option>
+                            <option>Books</option>
+                            <option>Celebrities</option>
+                            <option>Computers</option>
+                            <option>Film</option>
+                            <option>Geography</option>
+                            <option>History</option>                                
+                            <option>Math</option>
+                            <option>Music</option>
+                            <option>Mythology</option>
+                            <option>Nature</option>
+                            <option>Politics</option>
+                            <option>Sports</option>
+                            <option>TV</option>
+                            <option>Video Games</option>
+                        </select>
+                    </div>
+                    <div className="input-field col s6 m4">
+                        <select className="browser-default" onChange={e => setTopic1(e.target.value)}>
+                            <option value="General Knowledge" >General Knowledge</option>
+                            <option>Animals</option>
+                            <option>Art</option>
+                            <option>Board Games</option>
+                            <option>Books</option>
+                            <option>Celebrities</option>
+                            <option>Computers</option>
+                            <option>Film</option>
+                            <option>Geography</option>
+                            <option>History</option>                                
+                            <option>Math</option>
+                            <option>Music</option>
+                            <option>Mythology</option>
+                            <option>Nature</option>
+                            <option>Politics</option>
+                            <option>Sports</option>
+                            <option>TV</option>
+                            <option>Video Games</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-
-            <Form style={{width:'100%'}}>
-            <Container>
-                <Row>
-                    <Col>
-                    <Form.Group controlId="exampleForm.ControlSelect1">
-                        {/* <Form.Label>Example select</Form.Label> */}
-                        <Form.Control 
-                            as="select"
-                            onChange={e => setTopic6(e.target.value)}
-                        >
-                            <option>General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
-                        </Form.Control>
-                    </Form.Group>
-                    </Col>
-                    <Col>
-                    <Form.Group controlId="exampleForm.ControlSelect1">
-                        {/* <Form.Label>Example select</Form.Label> */}
-                        <Form.Control 
-                            as="select"
-                            onChange={e => setTopic5(e.target.value)}
-                        >
-                            <option>General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
-                        </Form.Control>
-                    </Form.Group>
-                    </Col>
-                    <Col>
-                    <Form.Group controlId="exampleForm.ControlSelect1">
-                        {/* <Form.Label>Example select</Form.Label> */}
-                        <Form.Control 
-                            as="select"
-                            onChange={e => setTopic4(e.target.value)}
-                        >
-                            <option>General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
-                        </Form.Control>
-                    </Form.Group>
-                    </Col>    
-                </Row>
-
-                <Row>
-                    <Col>
-                    <Form.Group controlId="exampleForm.ControlSelect1">
-                        {/* <Form.Label>Example select</Form.Label> */}
-                        <Form.Control 
-                            as="select"
-                            onChange={e => setTopic3(e.target.value)}
-                        >
-                            <option>General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
-                        </Form.Control>
-                    </Form.Group>
-                    </Col>
-                    <Col>
-                    <Form.Group controlId="exampleForm.ControlSelect1">
-                        {/* <Form.Label>Example select</Form.Label> */}
-                        <Form.Control 
-                            onChange={e => setTopic2(e.target.value)}
-                            as="select">
-                            <option>General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
-                        </Form.Control>
-                    </Form.Group>
-                    </Col>
-                    <Col>
-                    <Form.Group controlId="exampleForm.ControlSelect1">
-                        {/* <Form.Label>Example select</Form.Label> */}
-                        <Form.Control 
-                            as="select"
-                            onChange={e => setTopic1(e.target.value)}
-                        >
-                        <option>General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
-                        </Form.Control>
-                    </Form.Group>
-                    </Col>    
-                </Row>
-            
-            </Container>
-            </Form>
-            <Button 
-                // className='answer' 
+           
+            <button 
+                className="btn waves-effect waves-light answer" 
+                
                 onClick= {e => onInitClick(e)}
-                variant="outline-dark"
-            > 
-                Let's Go!
-            </Button>
-            </Card>
-            
+            >Let's Go!
+            </button>  
         </div>
     )
 }

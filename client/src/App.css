@@ -15,6 +15,10 @@
   /* #4B9FE1#fa0df2; */
 }
 
+.body{
+  overflow: visible;
+}
+
 img.bg {
   /* Set rules to fill background */
   min-height: 100%;
@@ -75,6 +79,10 @@ img.bg {
   padding:10px;
 }
 
+.p-lr-20{
+  padding:0 20px;
+}
+
 .p-20{
   padding:20px;
 }
@@ -83,6 +91,9 @@ img.bg {
   padding:30px;
 }
 
+.p-40{
+  padding:40px;
+}
 .mb-10{
   margin-bottom: 10px;
 }
@@ -167,12 +178,13 @@ img.bg {
 }
 
 .arrow{
-  color:var(--color-four);
+  color:#26a69a ;
+  
 }
 
 .arrow:hover{
   cursor: pointer;
-  color:var(--color-three);
+  color:var(--color-four);
 }
 
 .App {
@@ -181,29 +193,47 @@ img.bg {
   font-family: 'Roboto', sans-serif;
 }
 
-.wrong-reveal{
-  text-decoration: line-through;
-  opacity: .7;
-}
-
-.correct-reveal{
-border:5px solid green;
-}
-
 .container{
   width:75%;
   margin:40px auto;
 }
 
 .correctModal{
+  overflow: 'visible' !important;
+  min-height: 80vh;
+  overflow: 'visible' !important;
   background-color: hsla(111, 100%, 27%, 0.5);
+  color: hsla(111, 100%, 27%, 1);
+  top:-200;
+  margin:auto;
+  overflow: 'visible' !important;
 }
+
 .winnerModal{
+  overflow: 'visible' !important;
+  min-height: 80vh;
   background-color: hsla(293, 100%, 28%, 0.5);
+  color: hsla(293, 100%, 28%, 1);
+  top:-200;
+  margin:auto;
 }
 
 .wrongModal{
-  background-color: hsla(360, 100%, 50%, 0.5)
+  min-height: 80vh;
+  overflow: 'visible' !important;
+  background-color: hsla(360, 100%, 50%, 0.5);
+  color: hsla(360, 100%, 50%, 1);
+  margin:auto;
+}
+
+.mo{
+  margin: 12.5% auto;
+  width:75%;
+  min-height: 35vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -235,6 +265,8 @@ border:5px solid green;
   align-items: center;
   justify-content: center;
 }
+
+
 
 .center-text{
   text-align: center;

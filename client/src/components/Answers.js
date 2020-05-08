@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect} from 'react'
 import GameContext from '../context/game/gameContext'
-import Button from 'react-bootstrap/Button'
 import CorrectModal from './CorrectModal'
 import WrongModal from './WrongModal'
 import WinnerModal from './WinnerModal'
@@ -13,7 +12,7 @@ var he = require('he');
 
 const Answers = () => {
     const gameContext = useContext(GameContext)
-    const {correctAnswer, turn, getTurn, players, numberOfPlayers } = gameContext
+    const {correctAnswer, turn, getTurn, players, gameOver, numberOfPlayers } = gameContext
     const { question, layout, player, color } = turn
     
 
@@ -26,7 +25,7 @@ const Answers = () => {
         setRolling(true)
         setTimeout(() => {
             setRolling(false);
-        }, 1000);
+        }, 750);
        // eslint-disable-next-line
     }, [question]);
 
@@ -50,17 +49,19 @@ const Answers = () => {
                 console.log("correct getturn")
                 getTurn(player+1, i)
                 setShowWinner(false)
+                gameOver()
               }, 2500);
               return () => clearTimeout(timer);
         } else{
-            setShowCorrect(true)
             
+            setShowCorrect(true)
+
             const timer = setTimeout(() => {
                 console.log("correct getturn")
                 getTurn(player, i)
                 setShowCorrect(false)
                 correctAnswer(updatePlayers);
-            }, 2000);
+            }, 2500);
             return () => clearTimeout(timer);
         }
     }      
@@ -132,24 +133,27 @@ const Answers = () => {
             return(
                 <div>
                     <div>
-                        <Button 
-                            className='answer' 
-                            onClick= {e => onTrueClick(e)} 
-                            variant="outline-dark"
-                            disabled={rolling}
-                        > 
-                            True 
-                        </Button>
+                    <button 
+                        className="btn waves-effect waves-light answer" 
+                        disabled={rolling}
+                        onClick= {e => onTrueClick(e)} 
+                    >
+                     <a  href="#cModal">
+                     True
+                </a>
+                
+                    </button>
                     </div>
                     <div>
-                        <Button 
-                            className='answer' 
-                            onClick= {e => onFalseClick(e)} 
-                            variant="outline-dark"
-                            disabled={rolling}
-                        > 
-                            False 
-                        </Button>
+                    <button 
+                        className="btn waves-effect waves-light answer" 
+                        disabled={rolling}
+                        onClick= {e => onFalseClick(e)} 
+                    >
+                           <a  href="#cModal">
+                    False
+                </a>
+                    </button>
                     </div>
                 </div>
             )

@@ -1,34 +1,61 @@
-import React, {useState, useEffect} from 'react'
-import Modal from 'react-bootstrap/Modal'
+import React, { Component } from "react";
+import M from "materialize-css";
+import "materialize-css/dist/css/materialize.min.css";
 var he = require('he');
 
-const WinnerModal = ({player}) => {
-    
-    const [show, setShow] = useState(true);
+class Modal extends Component {
+  componentDidMount() {
+   
+    const options = {
+      onOpenStart: () => {
+        console.log("Open Start");
+      },
+      onOpenEnd: () => {
+        console.log("Open End");
+      },
+      onCloseStart: () => {
+        console.log("Close Start");
+      },
+      onCloseEnd: () => {
+        console.log("Close End");
+      },
+    //   inDuration: 250,
+    //   outDuration: 250,
+      opacity: 0.5,
+      dismissible: true,
+      startingTop: "4%",
+      endingTop: "10%"
+    };
+    M.Modal.init(this.Modal, options);
+    let instance = M.Modal.getInstance(this.Modal);
+    instance.open();
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const timer = setTimeout(() => {
+        console.log("winner timer")
+        instance.close();
+        instance.destroy()
+    }, 2500);
+    return () => clearTimeout(timer);
+  }
+
+  render() {
+    const {player} = this.props
 
     return (
-        <>
-        <Modal 
-            className="winnerModal"
-            show={show} 
-            onHide={handleClose}
-            centered
-            size="lg"
-        >  
-            <Modal.Body className='p-30' style={{color:'hsla(293, 100%, 28%, 1)', textAlign:'center'}}>
-                <div>
-                    <h2>Winner!</h2>
-                    <h3>
-                        Player {player}
-                    </h3>
-                </div>
-            </Modal.Body>
-        </Modal>
-        </>
-    )
+        <div
+          ref={Modal => {this.Modal = Modal}}
+          id="modal3"
+          className="modal winnerModal"
+        >
+            <div  className="white mo">
+            <h2>Winner!</h2>
+                <h3>
+                    Player {player}
+                </h3>
+            </div>
+      </div>
+    );
+  }
 }
 
-export default WinnerModal
+export default Modal;
