@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react'
 import GameContext from '../context/game/gameContext'
-
+import Topics from './Topics'
 
 const SetUp = () => {
     const gameContext = useContext(GameContext)
@@ -16,20 +16,17 @@ const SetUp = () => {
 
     let topics = [topic1,topic2,topic3,topic4,topic5,topic6]
 
-    const onInitClick = (e) => { 
-        // e.preventDefault;
+    const onInitClick = () => { 
         initGame(playersCount, topics)
     }
 
-    const onLeftClick = (e) => {
-        // e.preventDefault;
+    const onLeftClick = () => {
         if(playersCount > 1){
             setPlayersCount(playersCount-1)
         }
     }
 
-    const onRightClick = (e) => {
-        // e.preventDefault;
+    const onRightClick = () => {
         if(playersCount <10){
             setPlayersCount(playersCount+1)
         }
@@ -42,13 +39,13 @@ const SetUp = () => {
                     <h1>Number of Players</h1>
                     <span className="p-20" style={{textAlign:'center', fontSize:'36px'}}>  
                         <i 
-                            onClick= {e => onLeftClick(e)}
+                            onClick= {() => onLeftClick()}
                             className='fas fa-angle-left p-20 arrow'
                         > </i>
                         {playersCount}
                         <i 
                             className='fas fa-angle-right p-20 arrow'
-                            onClick= {e => onRightClick(e)}
+                            onClick= {() => onRightClick()}
                         > </i> 
                     </span>
                     <h1>Topics</h1>
@@ -56,133 +53,49 @@ const SetUp = () => {
                     <div className="input-field col s6 m4">
                         <select className="browser-default" onChange={e => setTopic6(e.target.value)}>
                             <option value="General Knowledge" >General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
+                            {Topics && Topics.map(topic =>(
+                                <option key={topic}>{topic}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="input-field col s6 m4">
                         <select className="browser-default" onChange={e => setTopic5(e.target.value)}>
                             <option value="General Knowledge" >General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
+                            {Topics && Topics.map(topic =>(
+                                <option key={topic}>{topic}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="input-field col s6 m4">
                         <select className="browser-default" onChange={e => setTopic4(e.target.value)}>
                             <option value="General Knowledge" >General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
+                            {Topics && Topics.map(topic =>(
+                                <option key={topic}>{topic}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="input-field col s6 m4">
                         <select className="browser-default" onChange={e => setTopic3(e.target.value)}>
                             <option value="General Knowledge" >General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
+                            {Topics && Topics.map(topic =>(
+                                <option key={topic}>{topic}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="input-field col s6 m4">
                         <select className="browser-default" onChange={e => setTopic2(e.target.value)}>
                             <option value="General Knowledge" >General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
+                            {Topics && Topics.map(topic =>(
+                                <option key={topic}>{topic}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="input-field col s6 m4">
                         <select className="browser-default" onChange={e => setTopic1(e.target.value)}>
                             <option value="General Knowledge" >General Knowledge</option>
-                            <option>Animals</option>
-                            <option>Art</option>
-                            <option>Board Games</option>
-                            <option>Books</option>
-                            <option>Celebrities</option>
-                            <option>Computers</option>
-                            <option>Film</option>
-                            <option>Geography</option>
-                            <option>History</option>                                
-                            <option>Math</option>
-                            <option>Music</option>
-                            <option>Mythology</option>
-                            <option>Nature</option>
-                            <option>Politics</option>
-                            <option>Sports</option>
-                            <option>TV</option>
-                            <option>Video Games</option>
+                            {Topics && Topics.map(topic =>(
+                                <option key={topic}>{topic}</option>
+                            ))}
                         </select>
                     </div>
                 </div>
@@ -190,8 +103,7 @@ const SetUp = () => {
            
             <button 
                 className="btn waves-effect waves-light answer" 
-                
-                onClick= {e => onInitClick(e)}
+                onClick= {() => onInitClick()}
             >Let's Go!
             </button>  
         </div>

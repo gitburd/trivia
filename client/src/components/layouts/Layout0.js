@@ -10,7 +10,6 @@ const Layout0 = ({onCorrectClick, onWrongClick, disabled}) => {
     return (
         <div>
             <div>
-
                 <button 
                     className="btn waves-effect waves-light answer" 
                     disabled={disabled}

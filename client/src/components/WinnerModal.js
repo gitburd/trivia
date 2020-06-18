@@ -7,8 +7,6 @@ class Modal extends Component {
   componentDidMount() {
    
     const options = {
-      
-    //   outDuration: 250,
       opacity: 0.5,
       dismissible: true,
       startingTop: "4%",
@@ -19,9 +17,8 @@ class Modal extends Component {
     instance.open();
 
     const timer = setTimeout(() => {
-        console.log("winner timer")
-        instance.close();
-        instance.destroy()
+      instance.close();
+      instance.destroy()
     }, 2500);
     return () => clearTimeout(timer);
   }
@@ -30,17 +27,17 @@ class Modal extends Component {
     const {player} = this.props
 
     return (
-        <div
-          ref={Modal => {this.Modal = Modal}}
-          id="modal3"
-          className="modal winnerModal"
-        >
-            <div  className="white mo">
-            <h2>Winner!</h2>
-                <h3>
-                    Player {player}
-                </h3>
-            </div>
+      <div
+        ref={Modal => {this.Modal = Modal}}
+        id="modal3"
+        className="modal winnerModal"
+      >
+        <div  className="white mo">
+        <h2>Winner!</h2>
+          <h3>
+            Player {player}
+          </h3>
+        </div>
       </div>
     );
   }

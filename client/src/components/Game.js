@@ -33,10 +33,14 @@ const Game = () => {
         )
     }else if(!turn){
         let i = Math.floor(Math.random() * 6) 
-        console.log('game getturn')
         getTurn(1, i)
         return (
-            <h1>Loading...</h1>
+            <div>
+                <img  className='bg' src={q} />
+                <div className='loading'>
+                    <h1>  Loading...</h1>
+                </div>                
+            </div>
         )
     }
 

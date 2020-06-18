@@ -15,7 +15,6 @@ const Answers = () => {
     const {correctAnswer, turn, getTurn, players, gameOver, numberOfPlayers } = gameContext
     const { question, layout, player, color } = turn
     
-
     const [showCorrect, setShowCorrect] = useState(false);
     const [showWrong, setShowWrong] = useState(false);
     const [showWinner, setShowWinner] = useState(false);
@@ -46,7 +45,6 @@ const Answers = () => {
             setShowWinner(true)
 
             const timer = setTimeout(() => {
-                console.log("correct getturn")
                 getTurn(player+1, i)
                 setShowWinner(false)
                 gameOver()
@@ -57,7 +55,6 @@ const Answers = () => {
             setShowCorrect(true)
 
             const timer = setTimeout(() => {
-                console.log("correct getturn")
                 getTurn(player, i)
                 setShowCorrect(false)
                 correctAnswer(updatePlayers);
@@ -82,10 +79,8 @@ const Answers = () => {
         setShowWrong(true)
 
         const timer = setTimeout(() => {
-            console.log("wrong getturn")
             getTurn(newPlayer, idx)
             setShowWrong(false)
-            
           }, 2500);
           return () => clearTimeout(timer);
     }
@@ -133,16 +128,16 @@ const Answers = () => {
             return(
                 <div>
                     <div>
-                    <button 
-                        className="btn waves-effect waves-light answer" 
-                        disabled={rolling}
-                        onClick= {e => onTrueClick(e)} 
-                    >
-                     <a  href="#cModal">
-                     True
-                </a>
-                
-                    </button>
+                        <button 
+                            className="btn waves-effect waves-light answer" 
+                            disabled={rolling}
+                            onClick= {e => onTrueClick(e)} 
+                        >
+                            <a className='white-text'  href="#cModal">
+                                True
+                            </a>
+                    
+                        </button>
                     </div>
                     <div>
                     <button 
@@ -150,9 +145,9 @@ const Answers = () => {
                         disabled={rolling}
                         onClick= {e => onFalseClick(e)} 
                     >
-                           <a  href="#cModal">
-                    False
-                </a>
+                        <a className='white-text' href="#cModal">
+                            False
+                        </a>
                     </button>
                     </div>
                 </div>

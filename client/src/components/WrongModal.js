@@ -5,11 +5,7 @@ var he = require('he');
 
 class Modal extends Component {
   componentDidMount() {
-   
     const options = {
-     
-    //   inDuration: 250,
-    //   outDuration: 250,
       opacity: 0.5,
       dismissible: false,
       startingTop: "4%",
@@ -20,26 +16,24 @@ class Modal extends Component {
     instance.open();
 
     const timer = setTimeout(() => {
-        console.log("wm timer")
-        instance.close();
-        instance.destroy()
+      instance.close();
+      instance.destroy()
     }, 2500);
     return () => clearTimeout(timer);
   }
 
   render() {
     const {correctAnswer} = this.props
-
     return (
-        <div
-          ref={Modal => {this.Modal = Modal}}
-          id="modal1"
-          className="modal wrongModal"
-        >
-            <div  className="white mo">
-                <h2>Wrong!</h2>
-                <p style={{fontSize:'24px'}}> Answer: {he.decode(correctAnswer)} </p>
-            </div>
+      <div
+        ref={Modal => {this.Modal = Modal}}
+        id="modal1"
+        className="modal wrongModal"
+      >
+        <div  className="white mo">
+            <h2>Wrong!</h2>
+            <p style={{fontSize:'24px'}}> Answer: {he.decode(correctAnswer)} </p>
+        </div>
       </div>
     );
   }

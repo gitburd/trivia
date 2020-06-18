@@ -1,6 +1,5 @@
 import React, { useContext, Fragment} from 'react'
 import GameContext from '../context/game/gameContext'
-import Die from './Die'
 
 var he = require('he');
 
