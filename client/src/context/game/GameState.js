@@ -14,7 +14,6 @@ import {
 
 const GameState = props => {
   const initialState = {
-    // colors:[ {code:'one', idx:0}, {code:'two', idx:2}, {code:'three', idx:3}, {code:'four', idx:3}, {code:'five', idx:4}, {code:'six', idx:5},],
     colors:['one', 'two', 'three',  'four', 'five', 'six'],
     players:[],
     numberOfPlayers:4,
@@ -27,40 +26,12 @@ const GameState = props => {
 
 
   const getTurn = async (player, i) => {
-    // let code = 'one'
-
-    // switch(i){
-    //   case Number(0) :
-    //     code = 'one';
-    //     break;
-    //   case Number(1) :
-    //     code = 'two';
-    //     break;
-    //   case Number(2) :
-    //     code = 'three';
-    //     break;
-    //   case Number(3) :
-    //     code = 'four';
-    //     break;
-    //   case Number(4) :
-    //     code = 'five';
-    //     break;
-    //   case Number(5) :
-    //     code = 'six';  
-    //     break;
-    // }
-    // const category = state.topics[i]
-
-    // const color ={
-    //   idx:i,
-    //   code        
-    // }
 
     const category = state.topics[i]
     const color =  state.newTopics[i].color
 
     //use an instance of cors-anywhere.herokuapp.com to generate a proxy
-    const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
+    const proxyURL = ""
     const targetURL='https://opentdb.com/api.php?amount=1&category='
     const token=`&token=${state.token}`
 
@@ -126,7 +97,7 @@ const GameState = props => {
       }
     ]
     //use an instance of cors-anywhere.herokuapp.com to generate a proxy
-    const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
+    const proxyURL = ""
     const targetURL='https://opentdb.com/api_token.php?command=request'
     try {
       let res = await axios.get(`${proxyURL}${targetURL}`)
