@@ -18,8 +18,7 @@ import {
                 init:true,
                 topics:action.payload.stateTopics,
                 token:action.payload.token,
-                newTopics: action.payload.newTopics,
-                colors: ['one', 'two', 'three',  'four', 'five', 'six']
+                newTopics: action.payload.newTopics
             }
         case GET_TURN:
             return{

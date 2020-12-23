@@ -4,18 +4,8 @@ import Answers from './Answers'
 import Die from './Die'
 import pure from 'recompose/pure'
 
-const Player = ( { player, turn, colors } ) => {
-    const [rolling, setRolling] = useState(false)
-
-    useEffect(() => {
-        setRolling(true)
-        setTimeout(() => {
-            setRolling(false);
-        }, 2000);
-       // eslint-disable-next-line
-    }, []);
-    const {color} = turn
-    // const scores = Object.keys(player.score);
+const Player = ( { player, turn} ) => {
+    const colors = ['one', 'two', 'three',  'four', 'five', 'six']
     return (
         <div>
             { player &&(

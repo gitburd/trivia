@@ -14,7 +14,6 @@ import {
 
 const GameState = props => {
   const initialState = {
-    colors:['one', 'two', 'three',  'four', 'five', 'six'],
     players:[],
     numberOfPlayers:4,
     turn:null,
@@ -109,8 +108,7 @@ const GameState = props => {
               players,
               stateTopics: topics,
               token:res.data.token,
-              newTopics,
-              colors:['one', 'two', 'three',  'four', 'five', 'six']
+              newTopics
             }
           })
         }
@@ -167,7 +165,6 @@ const GameState = props => {
   return (
     <GameContext.Provider
       value={{
-        colors:['one', 'two', 'three',  'four', 'five', 'six'],
         players:state.players,
         numberOfPlayers:state.numberOfPlayers,
         questions: state.questions,

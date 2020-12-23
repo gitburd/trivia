@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import pure from 'recompose/pure'
 
- const Die = ({ color }) => {
-    const [rolling, setRolling] =useState(false);
+function useIsMountedRef(){  const isMountedRef = useRef(null);  useEffect(() => {    isMountedRef.current = true;    return () => isMountedRef.current = false;  });  return isMountedRef;}
+
+const Die = ({ color}) => {
+    const isMountedRef = useIsMountedRef();
+    const [rolling, setRolling] = useState(false);
     useEffect(() => {
-        setRolling(true)
-        setTimeout(() => {
-            setRolling(false);
-        }, 5000);
+        if(isMountedRef.current){          
+            setRolling(true)
+            setTimeout(() => {
+                setRolling(false);
+            }, 5000);    
+        }
        // eslint-disable-next-line
     }, [color]);
 

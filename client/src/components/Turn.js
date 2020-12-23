@@ -6,7 +6,7 @@ import GameContext from '../context/game/gameContext'
 
 const Turn = (props) => {
   const gameContext = useContext(GameContext)
-  const { turn, players, colors } = gameContext
+  const { turn, players } = gameContext
   return (
     <div>
       {
@@ -14,7 +14,7 @@ const Turn = (props) => {
           players.filter(p =>{
             return p.id >= turn.player
           }).map(player => (
-            <Player key={player.id} player={player} turn={turn} colors={colors}/>
+            <Player key={player.id} player={player} turn={turn} />
           ))
         )
       }
