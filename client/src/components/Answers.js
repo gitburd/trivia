@@ -34,9 +34,9 @@ const Answers = () => {
         let updatePlayers = players
 
         // update correct score for the turn player only if the turn color score is false
-        if (updatePlayers[player-1].score[color.idx][0] === false){
+        if (updatePlayers[player-1].score[color] === false){
             updatePlayers[player-1].correct++
-            updatePlayers[player-1].score[color.idx][0] = true
+            updatePlayers[player-1].score[color] = true
         }
 
         const i = Math.floor(Math.random() * 6)

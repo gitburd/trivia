@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import pure from 'recompose/pure'
 
  const Die = ({ color }) => {
     const [rolling, setRolling] =useState(false);
@@ -20,4 +20,4 @@ import React, { useEffect, useState } from 'react'
     
 }
 
-export default Die
+export default pure(Die);

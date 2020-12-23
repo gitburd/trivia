@@ -1,5 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React, {useContext, useEffect} from 'react'
 import Turn from './Turn'
 import GameContext from '../context/game/gameContext'
 import Setup from './SetUp'
@@ -49,7 +48,7 @@ const Game = () => {
             <img  className='bg' src={q} />
             <Nav/>
             <div className='container'>
-                <Turn/>   
+                <Turn/>
             </div>
         </div>
     )

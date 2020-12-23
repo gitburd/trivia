@@ -13,7 +13,7 @@ function Question(props) {
             {
                 question && color && (
                     <Fragment>
-                        <h4 className={`color-${color.code} p-10`}>
+                        <h4 className={`color-${color} p-10`}>
                             <b>{question["category"]}</b>
                         </h4>
                         <p className='p-10'> {he.decode(question.question)}</p>

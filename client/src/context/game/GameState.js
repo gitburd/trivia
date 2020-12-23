@@ -14,7 +14,8 @@ import {
 
 const GameState = props => {
   const initialState = {
-    colors:[ {code:'one', idx:0}, {code:'two', idx:2}, {code:'three', idx:3}, {code:'four', idx:3}, {code:'five', idx:4}, {code:'six', idx:5},],
+    // colors:[ {code:'one', idx:0}, {code:'two', idx:2}, {code:'three', idx:3}, {code:'four', idx:3}, {code:'five', idx:4}, {code:'six', idx:5},],
+    colors:['one', 'two', 'three',  'four', 'five', 'six'],
     players:[],
     numberOfPlayers:4,
     turn:null,
@@ -22,40 +23,44 @@ const GameState = props => {
     init:false,
     token:''
   };
-            
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
-  const getTurn = async (player, i) => {
-    let code = 'one'
 
-    switch(i){
-      case Number(0) :
-        code = 'one';
-        break;
-      case Number(1) :
-        code = 'two';
-        break;
-      case Number(2) :
-        code = 'three';
-        break;
-      case Number(3) :
-        code = 'four';
-        break;
-      case Number(4) :
-        code = 'five';
-        break;
-      case Number(5) :
-        code = 'six';  
-        break;
-    }
+  const getTurn = async (player, i) => {
+    // let code = 'one'
+
+    // switch(i){
+    //   case Number(0) :
+    //     code = 'one';
+    //     break;
+    //   case Number(1) :
+    //     code = 'two';
+    //     break;
+    //   case Number(2) :
+    //     code = 'three';
+    //     break;
+    //   case Number(3) :
+    //     code = 'four';
+    //     break;
+    //   case Number(4) :
+    //     code = 'five';
+    //     break;
+    //   case Number(5) :
+    //     code = 'six';  
+    //     break;
+    // }
+    // const category = state.topics[i]
+
+    // const color ={
+    //   idx:i,
+    //   code        
+    // }
+
     const category = state.topics[i]
-    const color ={
-      idx:i,
-      code        
-    }
+    const color =  state.newTopics[i].color
 
     //use an instance of cors-anywhere.herokuapp.com to generate a proxy
-    const proxyURL = {proxyURL}
+    const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
     const targetURL='https://opentdb.com/api.php?amount=1&category='
     const token=`&token=${state.token}`
 
@@ -88,45 +93,40 @@ const GameState = props => {
   }
 
   const initGame = async  (numberOfPlayers, topics) => {
-    const  topicsListFull = {
-      'General Knowledge':9,
-      'Art':25,
-      'Books':10,
-      'Film':11,
-      'Geography':22, 
-      'Computers':18,
-      'Mythology':20,
-      'Animals':27,
-      'Celebrities':26,
-      'Sports':21,
-      'Politics':24,
-      'History':23,
-      'TV':14,
-      'Video Games': 15,
-      'Board Games':16,
-      'Music':12,
-      'Nature': 17,
-      'Math':19
-    }
-      
-    let stateTopics = []
-    topics.forEach(topic => {
-      stateTopics.push(topicsListFull[topic])
-    });
-    
+
     let players =[]
     for(let i=1; i<=numberOfPlayers; i++){
       players.push(
         {
           id:i,
-          score:[[false,'one'],[false,'two'], [false,'three'], [false, 'four'],[false, 'five'], [false, 'six']], 
+          score:{one:false, two:false, three:false, four:false, five:false, six:false}, 
           correct:0
         }
       )
     }
 
-     //use an instance of cors-anywhere.herokuapp.com to generate a proxy
-     const proxyURL = {proxyURL}
+    let newTopics = [
+      {topic: topics[0],
+        color: "one"
+      },
+      {topic: topics[1],
+        color: "two"
+      },
+      {topic: topics[2],
+        color: "three"
+      },
+      {topic: topics[3],
+        color: "four"
+      },
+      {topic: topics[4],
+        color: "five"
+      },
+      {topic: topics[5],
+        color: "six"
+      }
+    ]
+    //use an instance of cors-anywhere.herokuapp.com to generate a proxy
+    const proxyURL = "https://afternoon-castle-81655.herokuapp.com/"
     const targetURL='https://opentdb.com/api_token.php?command=request'
     try {
       let res = await axios.get(`${proxyURL}${targetURL}`)
@@ -136,8 +136,10 @@ const GameState = props => {
             payload: {
               numberOfPlayers,
               players,
-              stateTopics,
-              token:res.data.token
+              stateTopics: topics,
+              token:res.data.token,
+              newTopics,
+              colors:['one', 'two', 'three',  'four', 'five', 'six']
             }
           })
         }
@@ -149,8 +151,9 @@ const GameState = props => {
         payload: {
           numberOfPlayers,
           players,
-          stateTopics,
-          token:''
+          topics,
+          token:'',
+          newTopics
         }
       })
     }
@@ -193,7 +196,7 @@ const GameState = props => {
   return (
     <GameContext.Provider
       value={{
-        colors: state.colors,
+        colors:['one', 'two', 'three',  'four', 'five', 'six'],
         players:state.players,
         numberOfPlayers:state.numberOfPlayers,
         questions: state.questions,
